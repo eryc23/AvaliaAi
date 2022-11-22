@@ -12,12 +12,11 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
 
-  const {candidate, group, evaluator, skills} = req.body;
+  const {candidate, evaluator, skills} = req.body;
 
   await prisma.candidates.updateMany({
     where: {
         candidate,
-        group,
         evaluator
     },
     data: {

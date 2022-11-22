@@ -12,11 +12,11 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
 
-  const {candidate, group, evaluator, skills} = req.body;
+  const {candidate, evaluator, skills} = req.body;
 
   await prisma.candidates.create({
     data: {
-      candidate, group, evaluator, skills
+      candidate, evaluator, skills
     }
   }).then(() => {
     res.status(200).json({status: true})

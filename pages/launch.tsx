@@ -39,20 +39,26 @@ interface checkBoxProps{
     }[]) => void
 }
 
-const people = [
-    { id: 1, name: 'Candidato A' },
-    { id: 2, name: 'Candidato B' },
-    { id: 3, name: 'Candidato C' },
-    { id: 4, name: 'Candidato D' },
-    { id: 5, name: 'Candidato E' }    
-]
-
-const groups = [
-    { id: 1, name: 'Grupo 1' },
-    { id: 2, name: 'Grupo 2' },
-    { id: 3, name: 'Grupo 3' },
-    { id: 4, name: 'Grupo 4' },
-    { id: 5, name: 'Grupo 5' }
+const candidates = [
+    { id: 1, name: 'Candidato 1' },
+    { id: 2, name: 'Candidato 2' },
+    { id: 3, name: 'Candidato 3' },
+    { id: 4, name: 'Candidato 4' },
+    { id: 5, name: 'Candidato 5' },
+    { id: 6, name: 'Candidato 6' },
+    { id: 7, name: 'Candidato 7' },
+    { id: 8, name: 'Candidato 8' },
+    { id: 9, name: 'Candidato 9' },
+    { id: 10, name: 'Candidato 10' },
+    { id: 11, name: 'Candidato 11' },
+    { id: 12, name: 'Candidato 12' },
+    { id: 13, name: 'Candidato 13' },
+    { id: 14, name: 'Candidato 14' },
+    { id: 15, name: 'Candidato 15' },
+    { id: 16, name: 'Candidato 16' },
+    { id: 17, name: 'Candidato 17' },
+    { id: 18, name: 'Candidato 18' },
+    { id: 19, name: 'Candidato 19' },
 ]
 
 const evaluators = [
@@ -183,8 +189,7 @@ function CheckBoxItem({ checked, item, selectedSkills, setSelectedSkills }: chec
 
 export default function Launch(){
     const [selected, setSelected] = useState<{ id: Number, name: String }>({id: 0, name: '-- Selecione Candidato --'});
-    const [selectedGroup, setSelectedGroup] = useState<{ id: Number, name: String }>({id: 0, name: '-- Selecione Grupo do Participante --'});
-    const [selectedEvaluator, setSelectedEvaluator] = useState<{ id: Number, name: String }>({id: 0, name: '-- Selecione Grupo do Participante --'});
+    const [selectedEvaluator, setSelectedEvaluator] = useState<{ id: Number, name: String }>({id: 0, name: '-- Selecione Avaliador(a) --'});
     const [selectedSkills, setSelectedSkills] = useState<{ name: String, point: Number, selected: Boolean}[]>(skills);
 
     const handleSubmit = () => {
@@ -197,10 +202,9 @@ export default function Launch(){
             
         }).filter(n => n);
 
-        if(selected.id !== 0 && selectedGroup.id !== 0 && selectedEvaluator.id !== 0 && (ableSkills && ableSkills.length)){
+        if(selected.id !== 0 && selectedEvaluator.id !== 0 && (ableSkills && ableSkills.length)){
             axios.post('/api/create', {
-                candidate: selected.name, 
-                group: selectedGroup.name,
+                candidate: selected.name,
                 evaluator: selectedEvaluator.name, 
                 skills: ableSkills
             }).then(() => {
@@ -218,8 +222,8 @@ export default function Launch(){
             <MainMenu subtitle={'Lançar'} />
             <main className="min-h-screen transition-all relative flex justify-center bg-opacity-30 pb-4">
                 <div className="bg-slate-800 min-w-[90vw] rounded-sm p-4 mt-4 overflow-hidden relative">
-                    <ListBox title='Selecione Candidato' selected={selected} setSelected={setSelected} itemsList={people} />
-                    <ListBox title="Selecione Grupo" selected={selectedGroup} setSelected={setSelectedGroup} itemsList={groups} />
+                    <ListBox title="Quem está avaliando?" selected={selectedEvaluator} setSelected={setSelectedEvaluator} itemsList={evaluators} />
+                    <ListBox title='Selecione Candidato' selected={selected} setSelected={setSelected} itemsList={candidates} />
                     <div className="py-2">
                         <span className="block text-sm font-medium text-white mb-4">Selecione as skills</span>
                         <div className="grid grid-cols-2 md:grid-cols-3 transition-all duration-500 ease-linear">
@@ -228,7 +232,6 @@ export default function Launch(){
                             ))}
                         </div>
                     </div>
-                    <ListBox title="Quem está avaliando?" selected={selectedEvaluator} setSelected={setSelectedEvaluator} itemsList={evaluators} />
 
                     <button className="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" onClick={handleSubmit}>
                         ENVIAR

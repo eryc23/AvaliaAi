@@ -11,13 +11,12 @@ datasource db {
 }
 
 model candidates {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  candidate       String
-  group      String
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  candidate String
   evaluator String
-  skills     Skills[]
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  skills    Skills[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 type Skills {

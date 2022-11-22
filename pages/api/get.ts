@@ -14,13 +14,12 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
 
-  const {candidate, group, evaluator} = req.body;
+  const {candidate, evaluator} = req.body;
     
   await prisma.candidates.findMany({
     where: {
         AND: [
             candidate,
-            group,
             evaluator
         ]
     },
