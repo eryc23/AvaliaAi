@@ -1,5 +1,6 @@
 import {PencilSquareIcon} from '@heroicons/react/24/solid';
 import Head from 'next/head';
+import Link from 'next/link';
 
 export default function MainMenu({subtitle}: {subtitle: string}){
     return(
@@ -10,9 +11,9 @@ export default function MainMenu({subtitle}: {subtitle: string}){
             <header className="sticky top-0 z-30 h-[72px] bg-slate-900 bg-opacity-50 backdrop-blur backdrop-filter firefox:bg-opacity-90">
                 <div className="mx-auto max-w-8xl xl:px-8">
                 <div className="flex items-center justify-between border-b border-slate-800 px-4 py-5 sm:px-6 lg:px-8 xl:px-0">
-                    <a className="flex items-center justify-center" href="/">
-                    <PencilSquareIcon className="h-6 w-6"/> {'  '} &nbsp;AvaliaAí
-                    </a>
+                    <Link className="flex items-center justify-center" href={'/'}>
+                        <PencilSquareIcon className="h-6 w-6"/> {'  '} &nbsp;AvaliaAí
+                    </Link>
                 </div>
                 </div>
             </header>

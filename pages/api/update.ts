@@ -14,7 +14,7 @@ export default async function handler(
 
   const {candidate, group, evaluator, skills} = req.body;
 
-  await prisma.candidates.create({
+  await prisma.candidates.updateMany({
     where: {
         candidate,
         group,

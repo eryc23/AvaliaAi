@@ -1,5 +1,6 @@
 import {RocketLaunchIcon, ArrowDownOnSquareIcon} from '@heroicons/react/24/solid';
 import axios from 'axios';
+import Link from 'next/link';
 import MainMenu from './components/MainMenu';
 
 export default function Home() {
@@ -40,10 +41,10 @@ export default function Home() {
       <MainMenu subtitle={'Home'} />
       <main className="min-h-screen transition-all relative flex justify-center items-center bg-opacity-30">
         <div className="bg-slate-800 min-w-[30vw] rounded-sm grid items-center p-4">
-          <a href="/launch" className="flex flex-col items-center justify-center overflow-hidden rounded-md bg-gradient-to-r from-orange-400 to-pink-600 p-5 w-full my-2">
+          <Link href="/launch" className="flex flex-col items-center justify-center overflow-hidden rounded-md bg-gradient-to-r from-orange-400 to-pink-600 p-5 w-full my-2">
             <RocketLaunchIcon className="h-12 w-12"/>
             LANÇAR
-          </a>
+          </Link>
           <button onClick={handleGet} className="flex flex-col items-center justify-center overflow-hidden rounded-md bg-gradient-to-r from-green-400 to-cyan-500 p-5 w-full my-2">
             <ArrowDownOnSquareIcon className='h-12 w-12' />
             EXTRAIR
